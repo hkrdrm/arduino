@@ -1,0 +1,71 @@
+<h2>Ultra Sonic Blink</h2>
+  <p>
+    
+    For this project we are going to make LED's blink in a 
+    rythmic pattern using a delay.  This delay will be based 
+    on a distance calculated using the input from our <a href="ultra_sonic_link">Ultra Sonic Sensor</a>.
+    I'll be using a Shrimp board I built in my example; it functions just like an <a href="uno_link">Arduino Uno</a>.
+
+  </p>
+
+<h3>Items Needed</h3>
+  <ul>
+    <li>Arduino Board</li>
+    <li>4 X LED's Preferably Multi-Colored</li>
+    <li>HC-SR04 - Ultrasonic Module</li>
+    <li>Assorted Wires</li>
+  </ul>
+<h3>Optional Items</h3>
+  <ul>
+    <li>Soldering Iron</li>
+    <li>Paper Clip</li>
+  </ul>
+<h3>The Code</h3>
+  <pre class="prettyprint">
+// the setup routine runs once when you press reset:
+void setup() {                
+  pinMode(8, OUTPUT);
+  pinMode(2, INPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+ 
+  Serial.begin(9600);
+}
+ 
+void loop() {
+ 
+  long duration, distance;
+
+  //Send Pulse through speaker
+  digitalWrite(8, LOW);
+  delayMicroseconds(10);
+  digitalWrite(8, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(8, LOW);
+
+  //Read Pulse from mic
+  duration = pulseIn(2, HIGH);
+
+  //Calculate Distance
+  distance = (duration/2)/29.1;
+
+  //Write distance to serial port you can uncomment this line to test your calculations
+  //Serial.println( distance );
+
+  //don't want to delay too long for great distances max it out at 200
+  if(distance > 200){ 
+    distance = 200;
+  }
+
+  //LED flashing sequence
+  for(int j=9; j<=12; j++){
+    digitalWrite(j, HIGH);
+    delay(distance);
+    digitalWrite(j, LOW);  
+    delay(distance);
+  }   
+
+}
+  </pre>
