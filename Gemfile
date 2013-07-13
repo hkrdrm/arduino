@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'puma', '~> 2.1.0'
 gem 'execjs'
 gem 'therubyracer'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
