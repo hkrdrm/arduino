@@ -1,6 +1,7 @@
 Arduino::Application.routes.draw do
 
-  root :to => 'static_pages#home'
+  root :to => 'tutorials#ultrasonicblink'
+  get "tutorials/ultrasonicblink"
 
   get "static_pages/home"
   get "static_pages/contact"
