@@ -20,6 +20,27 @@
     <li>Soldering Iron</li>
     <li>Paper Clip</li>
   </ul>
+<h3>Circuit Setup</h3>
+  <p>
+    Pins 9 through 12 are going to be setup as output for the LED's.  Pin 8 will 
+    be used to send a pulse throught the mic, and Pin 2 will catch the echo.  I 
+    like to solder all the negative leads to my LED's to a paper clip then run a 
+    ground line to the paper clip.  Then you just have 4 wires coming from your 
+    output pins to your LEDS.  You can just wire them up on your breadboard; I just 
+    happened to run out of room on my tiny board so decided to do it this way.  The 
+    ultra sonic module should be fairly simple to understand it has a VCC pin you run 
+    hot wire to and a ground pin and your trigger and echo pins wired to pin 8 and pin 
+    2 on the arduino respectively.  
+  </p>
+<h3>Ultra Sonic Module Theory</h3>
+  <p>
+    Basically what happens is whenever a soundwave hits an object it bounces off that 
+    object and creates an echo.  Since we know the speed of sound (29 microseconds per centimeter) 
+    we can use this to our advantage and calculate the distance based on the formula:
+    <br>
+    <b>Distance = Rate * Time</b>
+    <br>
+  </p>
 <h3>The Code</h3>
   <pre class="prettyprint">
 // the setup routine runs once when you press reset:
@@ -49,7 +70,9 @@ void loop() {
   duration = pulseIn(2, HIGH);
 
   //Calculate Distance
-  distance = (duration/2)/29.1;
+  //Parallax datasheet ( http://www.parallax.com/dl/docs/prod/acc/28015-PING-v1.3.pdf ) tells us the ping 
+  //travels @ 73.746 microseconds per inch I don't like english measurements so I converted it to centimeters
+  distance = (duration / 2) / 29;
 
   //Write distance to serial port you can uncomment this line to test your calculations
   //Serial.println( distance );
@@ -66,6 +89,5 @@ void loop() {
     digitalWrite(j, LOW);  
     delay(distance);
   }   
-
 }
   </pre>

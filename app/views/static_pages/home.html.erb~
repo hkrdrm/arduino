@@ -20,6 +20,15 @@
     <li>Soldering Iron</li>
     <li>Paper Clip</li>
   </ul>
+<h3>Circuit Setup</h3>
+  <p>
+    Pins 9 through 12 are going to be setup as output for the LED's.  Pin 8 will 
+    be used to send a pulse throught the mic, and Pin 2 will catch the echo.  I 
+    guess I should give a brief explanation on how the ultra sonic module works.  
+    Basically when a sound wave hits and object it will bounce off that object, 
+    and since we know what the speed of sound is we can use this to our advantage. 
+    For our purposes we will be using the pace of sound with is 
+  </p>
 <h3>The Code</h3>
   <pre class="prettyprint">
 // the setup routine runs once when you press reset:
@@ -60,24 +69,12 @@ void loop() {
   }
 
   //LED flashing sequence
-  digitalWrite(9, HIGH);
-  delay(distance);
-  digitalWrite(9, LOW);  
-  delay(distance);
-   
-  digitalWrite(10, HIGH);  
-  delay(distance);
-  digitalWrite(10, LOW);  
-  delay(distance);
-  
-  digitalWrite(11, HIGH);  
-  delay(distance);
-  digitalWrite(11, LOW);  
-  delay(distance);
-   
-  digitalWrite(12, HIGH);  
-  delay(distance);
-  digitalWrite(12, LOW);  
-  delay(distance);
+  for(int j=9; j<=12; j++){
+    digitalWrite(j, HIGH);
+    delay(distance);
+    digitalWrite(j, LOW);  
+    delay(distance);
+  }   
+
 }
   </pre>
