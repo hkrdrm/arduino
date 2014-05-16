@@ -26,6 +26,8 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
     builder (3.1.4)
     capistrano (3.2.1)
       i18n
@@ -48,6 +50,9 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.2)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.1)
     libv8 (3.11.8.17)
     mail (2.5.4)
@@ -127,11 +132,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.1.1)
   capistrano
   coffee-rails (~> 4.0.0)
   execjs
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
   libv8 (~> 3.11.8)
   puma (~> 2.1.0)
   rails (= 4.0.0.rc2)
